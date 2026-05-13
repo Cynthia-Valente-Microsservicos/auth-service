@@ -1,0 +1,4 @@
+store\auth\JwtService.class
+store\auth\AuthService.class
+store\auth\AuthResource.class
+store\auth\AuthApplication.class
