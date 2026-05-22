@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
           - name: auth
-            image: 730335608828.dkr.ecr.us-east-2.amazonaws.com/account:latest
+            image: 730335608828.dkr.ecr.us-east-2.amazonaws.com/auth:latest
             imagePullPolicy: Always
             ports:
               - containerPort: 8080
