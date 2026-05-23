@@ -13,11 +13,21 @@ spec:
         app: auth
     spec:
       containers:
-          - name: auth
-            image: 730335608828.dkr.ecr.us-east-2.amazonaws.com/auth:latest
-            imagePullPolicy: Always
-            ports:
-              - containerPort: 8080
+        - name: auth
+          image: 730335608828.dkr.ecr.us-east-2.amazonaws.com/auth:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: JWT_HTTP_ONLY
+              value: "true"
+            - name: JWT_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-credentials
+                  key: jwt-secret-key
+            - name: JWT_EXPIRATION
+              value: "3600"
 
 ---
 
