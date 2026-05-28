@@ -18,6 +18,13 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          resources:
+            requests:
+              memory: "180Mi"
+              cpu: "100m"
+            limits:
+              memory: "350Mi"
+              cpu: "300m"
           env:
             - name: JWT_HTTP_ONLY
               value: "true"
