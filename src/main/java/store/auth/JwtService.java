@@ -33,7 +33,8 @@ public class JwtService {
             .id(account.id())
             .issuer("Insper::PMA")
             .claims(Map.of(
-                "email", account.email()
+                "email", account.email(),
+                "role", account.role()
             ))
             .signWith(getKey())
             .subject(account.name())
@@ -66,6 +67,12 @@ public class JwtService {
             );
         }
         return claims.getId();
+    }
+
+    public String getRole(String jwt){
+        JwtParser parser = Jwts.parser().verifyWith(getKey()).build();
+        Claims claims = parser.parseSignedClaims(jwt).getPayload();
+        return (String) claims.get("role");
     }
 
 }
