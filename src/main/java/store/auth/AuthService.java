@@ -1,5 +1,8 @@
 package store.auth;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,10 +64,15 @@ public class AuthService {
         return httpOnly;
     }
 
-    public String solveToken(String token) {
+    public Map<String, String> solveToken(String token) {
         logger.debug(token);
-        // devolver o idAccount
-        return jwtService.getId(token);
+
+        String id = jwtService.getId(token);
+        String role = jwtService.getRole(token);
+        Map<String, String> response = new HashMap<>();
+        response.put("idAccount", id);
+        response.put("role", role);
+        return response;
     }
 
     public AccountOut whoIAm(String idAccount) {

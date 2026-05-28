@@ -18,7 +18,6 @@ import store.account.AccountOut;
 public class AuthResource implements AuthController {
 
     private static Logger logger = LoggerFactory.getLogger(AuthController.class);
-    private static JwtService jwtService;
 
     @Autowired
     private AuthService authService;
@@ -77,11 +76,11 @@ public class AuthResource implements AuthController {
     @Override
     public ResponseEntity<Map<String, String>> solveToken(TokenOut map) {
         logger.debug("Chegou: " + map.toString());
-        final String idAccount = authService.solveToken(map.token());
+        final Map<String, String> response = authService.solveToken(map.token());
         return ResponseEntity.ok(Map.of(
-            "idAccount", idAccount,
-            "role", jwtService.getRole(map.token())
-        ));
+            "idAccount", response.get("idAccount"),
+            "role", response.get("id"))
+        );
     }
 
 }
