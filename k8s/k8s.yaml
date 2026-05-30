@@ -25,6 +25,20 @@ spec:
             limits:
               memory: "350Mi"
               cpu: "300m"
+          readinessProbe:
+            httpGet:
+              path: /auth/actuator/health
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            failureThreshold: 5
+          livenessProbe:
+            httpGet:
+              path: /auth/actuator/health
+              port: 8080
+            initialDelaySeconds: 40
+            periodSeconds: 15
+            failureThreshold: 3
           env:
             - name: JWT_HTTP_ONLY
               value: "true"

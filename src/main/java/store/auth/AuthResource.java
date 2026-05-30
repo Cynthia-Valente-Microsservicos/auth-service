@@ -78,7 +78,7 @@ public class AuthResource implements AuthController {
         logger.debug("Chegou: " + map.toString());
         final Map<String, String> response = authService.solveToken(map.token());
         return ResponseEntity.ok(Map.of(
-            "idAccount", response.get("idAccount"),
+            "id-account", response.get("idAccount"),
             "role", response.get("id"))
         );
     }
