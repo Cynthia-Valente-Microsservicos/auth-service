@@ -79,7 +79,7 @@ public class AuthResource implements AuthController {
         final Map<String, String> response = authService.solveToken(map.token());
         return ResponseEntity.ok(Map.of(
             "id-account", response.get("idAccount"),
-            "role", response.get("id"))
+            "role", response.get("role"))
         );
     }
 
